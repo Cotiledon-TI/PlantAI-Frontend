@@ -51,6 +51,7 @@ interface Categoria {
     precio: number;
     descripcion: string;
     imagen?: string;
+    imagenes?: {ruta: string}[];
     stock: number;
     unidadesVendidas: number;
     puntuacion: number;
