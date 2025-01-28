@@ -128,74 +128,88 @@ const CheckoutInvitadoForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
   
-    const token = localStorage.getItem('token');
-    if (!token) {
-      alert('No se encontró el token de autorización. Por favor, inicia sesión nuevamente.');
-      navigate('/login');
-      return;
-    }
-  
-    const userId = JSON.parse(atob(token.split('.')[1])).sub;
-  
-    const cartId = await verifyCartActive();
-    if (!cartId) {
-      alert('No se encontró un carrito activo. Por favor, intenta nuevamente.');
-      return;
-    }
-  
-    const pedidoPayload = {
-      fechaCreacion: new Date().toISOString().split('T')[0],
-      idCarro: cartId,
-      idMedioPago: 1,
-      idEstado: 1,
-      idTipoDespacho: formData.formaEnvio === 'envio' ? 1 : 2,
-      receptor: formData.quienRecibe,
-      fechaEntrega: new Date(new Date().setDate(new Date().getDate() + 3))
-        .toISOString()
-        .split('T')[0],
-      direccionEnvio: {
-        comuna: formData.comuna,
-        calle: formData.direccion,
-        numero: '03010',
-        departamento: '1215',
-        referencia: 'Junto al supermercado',
-      },
-    };
-  
     try {
-      console.log('Enviando datos al endpoint de finalizar compra:', pedidoPayload);
-  
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/pedidos/${userId}`, {
+      const invitadoResponse = await fetch(`${import.meta.env.VITE_API_URL}/usuarios/visitante`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          nombre: formData.nombre,
+          apellido: formData.apellido,
+          email: formData.email,
+          telefono: formData.telefono,
+          rut: formData.rut,
+        }),
+      });
+  
+      if (!invitadoResponse.ok) {
+        const errorData = await invitadoResponse.json();
+        console.error('Error al crear el usuario invitado:', errorData);
+        alert(`Error al crear usuario invitado: ${errorData.message || 'Error desconocido'}`);
+        return;
+      }
+  
+      const usuarioData = await invitadoResponse.json();
+      console.log('Usuario invitado creado:', usuarioData);
+
+      localStorage.setItem('token', usuarioData.access_token);
+  
+      const cartId = await verifyCartActive();
+      if (!cartId) {
+        alert('No se encontró un carrito activo. Por favor, intenta nuevamente.');
+        return;
+      }
+  
+      const pedidoPayload = {
+        fechaCreacion: new Date().toISOString().split('T')[0],
+        idCarro: cartId,
+        idMedioPago: 1,
+        idEstado: 1,
+        idTipoDespacho: formData.formaEnvio === 'envio' ? 1 : 2,
+        receptor: formData.quienRecibe,
+        fechaEntrega: new Date(new Date().setDate(new Date().getDate() + 3))
+          .toISOString()
+          .split('T')[0],
+        direccionEnvio: {
+          comuna: formData.comuna,
+          calle: formData.direccion,
+          numero: '03010',
+          departamento: '1215',
+          referencia: 'Junto al supermercado',
+        },
+      };
+  
+      console.log('Enviando datos al endpoint de finalizar compra:', pedidoPayload);
+  
+      const pedidoResponse = await fetch(`${import.meta.env.VITE_API_URL}/pedidos/${usuarioData.id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${usuarioData.access_token}`,
         },
         body: JSON.stringify(pedidoPayload),
       });
   
-      if (!response.ok) {
-        const errorData = await response.json();
+      if (!pedidoResponse.ok) {
+        const errorData = await pedidoResponse.json();
         console.error('Error al finalizar la compra:', errorData);
         alert(`Error al finalizar la compra: ${errorData.message || 'Error desconocido'}`);
         return;
       }
   
-      const data = await response.json();
-      console.log('Pedido creado exitosamente:', data);
+      const pedidoData = await pedidoResponse.json();
+      console.log('Pedido creado exitosamente:', pedidoData);
   
       dispatch(clearCart());
   
-      navigate('/cart-page-pay', { state: { pedidoId: data.id, formData } });
+      navigate('/cart-page-pay', { state: { pedidoId: pedidoData.id, formData } });
     } catch (error) {
-      console.error('Error crítico al procesar el pedido:', error);
+      console.error('Error crítico en el flujo de pago:', error);
       alert('Hubo un problema al procesar tu pedido. Por favor, inténtalo nuevamente.');
     }
   };
   
-  
-  
-
   return (
     <Container className="checkout-container">
       <h2 className="text-center">¿Eres nuevo en Plant AI?</h2>
