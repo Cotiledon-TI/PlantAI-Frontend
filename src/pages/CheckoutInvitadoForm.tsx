@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import '../styles/CheckoutInvitadoForm.css';
-import { clearCart } from '../states/cartSlice';
+import { setCart } from '../states/cartSlice';
 import regionesComunas from '../utils/regionesComunas';
 import { CartItem } from '../interfaces/CartItem';
 
@@ -127,7 +127,6 @@ const syncCartWithBackendInvitado = async (token: string): Promise<number | null
   return await replaceCartProducts(token, cartId);
 };
 
-
 const CheckoutInvitadoForm: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -211,7 +210,13 @@ const CheckoutInvitadoForm: React.FC = () => {
         return;
       }
 
-      dispatch(clearCart());
+      const localCartStr = localStorage.getItem('__redux__cart__');
+      if (localCartStr) {
+        const localCart: LocalCart = JSON.parse(localCartStr);
+        if (localCart && localCart.productos) {
+          dispatch(setCart(localCart.productos));
+        }
+      }
 
       navigate('/cart-page-pay', {
         state: {
@@ -219,16 +224,6 @@ const CheckoutInvitadoForm: React.FC = () => {
         },
       });
 
-      /*
-      // CREAR PEDIDO -> Provoca que luego CartPagePay muestre un carrito vacío
-      const pedidoPayload = { ... };
-      const pedidoResp = await fetch(`${API_BASE_URL}/pedidos/${usuarioData.id}`, {...});
-      ...
-      const pedidoData = await pedidoResp.json();
-      navigate('/cart-page-pay', {
-        state: { formData, pedidoId: pedidoData.id },
-      });
-      */
     } catch (error) {
       console.error('Error crítico en invitado:', error);
       alert('Hubo un problema. Intenta de nuevo.');
