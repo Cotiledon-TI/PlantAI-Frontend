@@ -15,13 +15,13 @@ import transferenciaIcon from '../assets/transferencia-bancaria.png';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
 
-
 const CartPagePay: React.FC = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.productos as CartItem[]);
   const navigate = useNavigate();
   const location = useLocation();
-  const { formData, pedidoId } = location.state || {};
+  
+  const { formData } = location.state || {};
 
   const [cartId, setCartId] = useState<number | null>(null);
   const [coupon, setCoupon] = useState<string>('');
@@ -109,11 +109,11 @@ const CartPagePay: React.FC = () => {
   }, [dispatch, location.state?.cartId, fetchActiveCart, isAuthenticated]);
 
   useEffect(() => {
-    if (!formData || !pedidoId) {
+    if (!formData) {
       alert('No se encontraron datos para continuar con el proceso de pago.');
       navigate('/cart', { replace: true });
     }
-  }, [formData, pedidoId, navigate]);
+  }, [formData, navigate]);
 
   if (!isAuthenticated) {
     return null;
@@ -129,7 +129,10 @@ const CartPagePay: React.FC = () => {
     return acc;
   }, []);
 
-  const total = groupedItems.reduce((acc: number, item: CartItem) => acc + item.precio * item.cantidad, 0);
+  const total = groupedItems.reduce(
+    (acc: number, item: CartItem) => acc + item.precio * item.cantidad,
+    0
+  );
   const totalWithBaseDiscount = total * 0.8;
   const totalWithCoupon = totalWithBaseDiscount * (1 - couponDiscount);
 
@@ -166,9 +169,7 @@ const CartPagePay: React.FC = () => {
     if (product) {
       try {
         const newQuantity = product.cantidad + 1;
-
         await addProductToCart(cartId, productId, newQuantity);
-
         dispatch(updateQuantity({ id: productId, cantidad: 1 }));
       } catch (error) {
         alert('Error al intentar incrementar el producto. Por favor, inténtalo nuevamente.');
@@ -215,9 +216,6 @@ const CartPagePay: React.FC = () => {
       }
 
       dispatch(removeFromCart(productId));
-      const updatedCartItems = cartItems.filter((item) => item.id !== productId);
-      localStorage.setItem('__redux__cart__', JSON.stringify({ productos: updatedCartItems }));
-
       alert('El producto ha sido eliminado del carrito.');
     } catch (error) {
       console.error('Error al eliminar producto:', error);
@@ -337,24 +335,22 @@ const CartPagePay: React.FC = () => {
                   <ListGroup.Item key={item.id} className="cart-item">
                     <Row className="align-items-center row col-md-12">
                       <Col md={3}>
-                      <img
-                        src={
-                          item.imagen
-                            ? `${import.meta.env.MODE === 'development' ? '' : API_BASE_URL}${item.imagen}`
-                            : '/estaticos/default-image.jpg'
-                        }
-                        alt={item.nombre}
-                        className="product-image img-fluid"
-                      />
+                        <img
+                          src={
+                            item.imagen
+                              ? `${import.meta.env.MODE === 'development' ? '' : API_BASE_URL}${item.imagen}`
+                              : '/estaticos/default-image.jpg'
+                          }
+                          alt={item.nombre}
+                          className="product-image img-fluid"
+                        />
                       </Col>
                       <Col md={7}>
                         <h5 className="product-title mb-2">{item.nombre}</h5>
-                        {/* Precio con descuento y badge */}
                         <p className="price-text-cart mb-1">
-                          Ahora ${((item.precio * 0.8).toLocaleString('es-CL'))}
+                          Ahora ${(item.precio * 0.8).toLocaleString('es-CL')}
                           <span className="cart-price-badge ms-2">-20%</span>
                         </p>
-                        {/* Precio original tachado */}
                         <p className="original-price text-muted">
                           <del>Normal ${item.precio.toLocaleString('es-CL')}</del>
                         </p>
@@ -390,7 +386,6 @@ const CartPagePay: React.FC = () => {
                   </ListGroup.Item>
                 ))}
               </ListGroup>
-
             </>
           )}
         </Col>
@@ -426,7 +421,6 @@ const CartPagePay: React.FC = () => {
       <Col md={6} className='mt-4'>
         <Card className="payment-card">
           <Card.Body>
-            {/* Sección de código de descuento */}
             <div className="discount-section mb-4">
               <h6 className="mb-3">Código de descuento</h6>
               <Form.Control
@@ -445,21 +439,14 @@ const CartPagePay: React.FC = () => {
                 Aplicar
               </Button>
             </div>
-
-            {/* Sección de método de pago */}
             <div className="payment-method-section">
               <h6 className="mb-3">Elige cómo pagar</h6>
-              
-              {/* Tarjetas guardadas */}
               <div className="saved-cards mb-3">
                 <p className="text-muted small mb-2">Tarjetas guardadas</p>
                 <Form.Select className="mb-3">
                   <option>Falabella **9999</option>
-                  {/* Agrega más opciones según las tarjetas guardadas */}
                 </Form.Select>
               </div>
-
-              {/* Billeteras digitales */}
               <div className="digital-wallets mb-4">
                 <p className="text-muted small mb-2">Billeteras digitales</p>
                 <div className="payment-methods">
