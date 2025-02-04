@@ -66,3 +66,26 @@ interface Categoria {
     accesorio?: Accesorio; 
     insumo?: boolean;  
   }  
+
+  export interface EditProductAdmin {
+    SKU: string;
+    nombre: string;
+    idCategoria: number;
+    precio: number;
+    descripcion: string;
+    stock: number;
+    unidadesVendidas: number;
+    puntuacion: number;
+    ancho: number;
+    alto: number;
+    largo: number;
+    peso: number;
+    imagenes: {id_producto: number;
+      ruta: string;
+    }[]
+    habilitado: boolean;
+    planta?: Planta; 
+    macetero?: Macetero;
+    accesorio?: Accesorio; 
+    insumo?: boolean;  
+  }  
