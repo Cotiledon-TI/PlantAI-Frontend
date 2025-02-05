@@ -6,7 +6,7 @@ import FeaturedProducts from '../components/FeaturedProducts';
 
 export default function HomePage() {
   return (
-    <div>
+    <div className='container'>
       <Banner />
       <FeaturedProducts />
       <InfoCards />
