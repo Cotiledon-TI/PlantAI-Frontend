@@ -520,12 +520,3 @@ ul.custom-tabs.mb-3.nav.nav-tabs {
   font-weight: 500;
   line-height: var(--line-height-text4-xxs-medium);
 }
-
-/* Carro de compra */
-
-.carro-container {
-  margin-bottom: 12rem;
-  margin-top: 2rem;
-  position: relative;
-  top: 10rem;
-}
