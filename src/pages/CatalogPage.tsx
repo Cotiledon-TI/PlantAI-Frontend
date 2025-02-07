@@ -449,7 +449,7 @@ const fetchProducts = useCallback(async () => {
           <Offcanvas.Header closeButton>
             <Offcanvas.Title>Mi Carrito de compras</Offcanvas.Title>
           </Offcanvas.Header>
-          <Offcanvas.Body>
+          <Offcanvas.Body>ƒ
             {selectedProduct && (
               <div className="cart-item-card">
                 <img

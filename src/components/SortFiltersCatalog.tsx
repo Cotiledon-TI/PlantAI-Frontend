@@ -69,7 +69,7 @@ export const SortFilters: React.FC<SortFiltersProps> = ({ onSortChange }) => {
     return (
         <Row className="mb-3">
             <Col className="mb-4 mt-5 justify-content-start fs-xl colorlet titulopagecatalog">
-                Plantas de interior
+            <h2 className="text-l-medium mt-4 mb-4">Plantas de interior</h2>
             </Col>
             <Col className="mb-4 mt-5 justify-content-end">
                 <div className="custom-select-container colorlet">
