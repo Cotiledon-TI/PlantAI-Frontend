@@ -117,8 +117,13 @@ const FeaturedProducts: React.FC = () => {
                         {Array.isArray(products) && products.length > 0 ? (
                             products.map((product) => (
                                 <Col className='col-sm-12 col-md-3 col-lg-3 mb-5'>
-                                    <Card className="h-100">
+                                    <Card className="h-100 position-relative">
+                                        <span className="material-symbols-outlined position-absolute top-0 end-0 m-2 z-1" style={{ color: '#1A4756' }}>
+                                            pets
+                                        </span>
+
                                         <Link to={`/catalogo/producto/${product.id}`}>
+                                            {/* Solo una imagen */}
                                             <Card.Img
                                                 variant="top"
                                                 src={
@@ -230,4 +235,3 @@ const FeaturedProducts: React.FC = () => {
 };
 
 export default FeaturedProducts;
-

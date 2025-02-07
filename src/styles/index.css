@@ -13,13 +13,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-x: hidden;
 }
 
 .container {
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 20px; /* Agrega padding para que el contenido no toque los bordes */
+  padding: 0 20px;
 }
 
 h4 {
