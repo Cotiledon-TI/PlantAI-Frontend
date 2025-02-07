@@ -202,7 +202,7 @@ a#user-dropdown {
     font-size: 16px !important;
   }
 
-  .nav-dropdown .dropdown-toggle, .nav-link {
+  .nav-dropdown .dropdown-toggle, .nav-link a {
     color: #1a4756 !important;
     font-size: 20px !important;
     line-height: 8px;
@@ -211,7 +211,7 @@ a#user-dropdown {
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: left!important;
   }
 
   .nav-link.cart-link {

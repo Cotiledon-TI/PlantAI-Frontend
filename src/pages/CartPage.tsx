@@ -65,7 +65,7 @@ const CartPage: React.FC = () => {
   }, 0);
 
   return (
-    <Container className="cart-container vh-70">
+    <Container className="cart-container vh-85">
       <Row className="justify-content-center">
         <Col md={6} className="me-3">
           <div className="cart-header">
@@ -172,7 +172,7 @@ const CartPage: React.FC = () => {
       </Row>
       <Row>
         <Col md={12} className="d-flex justify-content-between mt-4">
-          <Col md={4}>
+          <Col sm={5} md={4}>
             <Button
               style={{ backgroundColor: 'white', color: '#1A4756', border: '3px solid #1A4756' }}
               className="bt go-button float-end"
@@ -182,7 +182,7 @@ const CartPage: React.FC = () => {
               Volver
             </Button>
           </Col>
-          <Col md={5}>
+          <Col sm={9} md={5}>
             <Button
               className="bt go-button float-end"
               variant="primary"
