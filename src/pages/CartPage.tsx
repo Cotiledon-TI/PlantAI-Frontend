@@ -67,7 +67,7 @@ const CartPage: React.FC = () => {
   return (
     <Container className="cart-container vh-70">
       <Row className="justify-content-center">
-        <Col md={5} className="me-5">
+        <Col md={6} className="me-3">
           <div className="cart-header">
             <h4>Tu compra</h4>
             {groupedItems.length > 0 && (
@@ -147,7 +147,7 @@ const CartPage: React.FC = () => {
         <Col md={5} className="mt-5">
           <Card className="summary-card">
             <Card.Body>
-              <Card.Title>Resumen de mi compra</Card.Title>
+              <Card.Title><h4>Resumen de mi compra</h4></Card.Title>
               <ListGroup variant="flush" className="mb-3">
                 <ListGroup.Item className="d-flex justify-content-between">
                   <span>Costos de tus productos</span>

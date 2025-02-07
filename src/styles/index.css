@@ -9,7 +9,7 @@ body {
   overflow-x: hidden;
 }
 
-p, h1, h2, h3, h4, h5, h6, li, a, input, button, span, select, option {
+p, h1, h2, h3, h4, h5, h6, li, a, input, button, span, select, option, strong {
   font-family: Quicksand;
 }
 
@@ -244,6 +244,7 @@ button.btn-primary {
   background-color: var(--primary-color);
   border-color: var(--primary-color);
   color: white;
+  font-family: Quicksand;
 }
 
 button.btn-primary:hover {
@@ -273,6 +274,7 @@ button.btn-secondary {
   background-color: var(--secondary-color);
   border-color: var(--secondary-color);
   color: white;
+  font-family: Quicksand;
 }
 
 button.btn-secondary:hover {
