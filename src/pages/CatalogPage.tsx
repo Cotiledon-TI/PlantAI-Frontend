@@ -29,6 +29,7 @@ const CatalogPage: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<productsCatalog | null>(null);
   const [searchParams] = useSearchParams();
   const searchTerm = searchParams.get('search');
+  const [productosConDescuento, setProductosConDescuento] = useState<{ [key: number]: number }>({});
   const [filters, setFilters] = useState<CatalogFilters>({
     petFriendly: undefined,
     puntuacion: 0,
@@ -104,6 +105,72 @@ const fetchProducts = useCallback(async () => {
     fetchProducts();
   }, [filters, currentPage, pageSize, searchTerm, fetchProducts]);
 
+  useEffect(() => {
+    const fetchProductosConDescuento = async () => {
+      try {
+        const baseUrl = import.meta.env.VITE_API_URL;
+        const idPromocion = 1;
+        const productosResponse = await fetch(
+          `${baseUrl}/promociones/productos/${idPromocion}?page=1&pageSize=100`,
+          {
+            method: 'GET',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+        
+        if (!productosResponse.ok) {
+          throw new Error('Error al cargar los productos de la promoción');
+        }
+        
+        const productosData = await productosResponse.json();
+        const productosConDescuentoTemp: { [key: number]: number } = {};
+        
+        if (productosData.todosSeleccionados) {
+
+          if (
+            productosData.tipoPromocion &&
+            productosData.tipoPromocion.toUpperCase() === "CUPON"
+          ) {
+            console.log("Promoción de cupón, no se aplica descuento en catálogo.");
+          } else {
+            const descuentoGlobal = productosData.valor || 20;
+            products.forEach((product: productsCatalog) => {
+              productosConDescuentoTemp[product.id] = descuentoGlobal;
+            });
+          }
+        } else if (productosData.data && Array.isArray(productosData.data)) {
+          // caso en que la promoción aplica a productos seleccionados
+          productosData.data.forEach((producto: any) => {
+            if (
+              producto.promocionesDestacadas &&
+              Array.isArray(producto.promocionesDestacadas)
+            ) {
+              // *** promoción tradicional (no --CUPON) ***
+              const promoTradicional = producto.promocionesDestacadas.find((promo: any) =>
+                promo.tipoPromocion && promo.tipoPromocion.toUpperCase() !== "CUPON"
+              );
+              if (promoTradicional) {
+                productosConDescuentoTemp[producto.id] = promoTradicional.valor;
+              }
+            }
+          });
+        }
+        
+        setProductosConDescuento(productosConDescuentoTemp);
+      } catch (error) {
+        console.error("Error al cargar productos con descuento:", error);
+      }
+    };
+  
+    if (products.length > 0) {
+      fetchProductosConDescuento();
+    }
+  }, [products]);
+  
+  
 
   const handleAddToCart = (product: productsCatalog) => {
     const productId = product.id;
@@ -148,8 +215,6 @@ const fetchProducts = useCallback(async () => {
     }));
   };
   
-
-
   const handlePageChange = (page: number) => {
     if (page !== currentPage && page > 0 && page <= totalPages) {
       setCurrentPage(page);
@@ -353,12 +418,9 @@ const fetchProducts = useCallback(async () => {
                       </Link>
                       <Card.Body className="text-start">
                         <div className='contenedordeTituloyDescripcion'>
-                          {/* Título del producto */}
                           <Card.Title className="d-flex justify-content-between align-items-center" id="image-text">
                             <span>{truncateText(product.nombre, 12)}</span>
                           </Card.Title>
-
-                          {/* Descripción del producto */}
                           <Card.Text className="description-text">
                             <span>{truncateText(product.descripcion, 20)}</span>
                           </Card.Text>
@@ -367,11 +429,27 @@ const fetchProducts = useCallback(async () => {
 
                         {/* Precio del producto */}
                         <div className="price-text">
-                          {new Intl.NumberFormat('es-CL', {
-                            style: 'currency',
-                            currency: 'CLP',
-                            minimumFractionDigits: 0,
-                          }).format(product.precio)}
+                          <span>
+                            {new Intl.NumberFormat('es-CL', {
+                              style: 'currency',
+                              currency: 'CLP',
+                              minimumFractionDigits: 0,
+                            }).format(product.precio)}
+                          </span>
+
+                          {/* Recuadro de descuento */}
+                          {productosConDescuento[product.id] && (
+                            <span style={{ 
+                              backgroundColor: 'red', 
+                              color: 'white', 
+                              padding: '2px 6px', 
+                              borderRadius: '4px', 
+                              marginLeft: '8px',
+                              fontSize: '12px'
+                            }}>
+                              {productosConDescuento[product.id]}% OFF
+                            </span>
+                          )}
                         </div>
 
                         {/* Botón para agregar al carrito */}
@@ -384,14 +462,12 @@ const fetchProducts = useCallback(async () => {
                           >
                             <span className="material-symbols-outlined">add_shopping_cart</span>
                           </Button>
-                          {/* Mensaje de error por stock*/}
                           {errorMessages[product.id] && (
                             <p className="error-message">
                               {errorMessages[product.id]}
                             </p>
                           )}
                         </div>
-
                       </Card.Body>
                     </Card>
                   </Col>
