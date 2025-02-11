@@ -372,14 +372,20 @@ const CatalogPage: React.FC = () => {
                           </div>
                           {product.promocionesDestacadas &&
                             product.promocionesDestacadas.length > 0 &&
-                            (product.promocionesDestacadas[0].valor > 0) && (
-                              <div className="discount-badge">
-                                {product.promocionesDestacadas[0].tipoDescuento === 'PORCENTAJE'
-                                  ? `${product.promocionesDestacadas[0].valor}% off`
-                                  : `$${product.promocionesDestacadas[0].valor} off`}
-                              </div>
-                          )}
+                            (() => {
+                              const promoTradicional = product.promocionesDestacadas.find(
+                                (promo) => promo.tipoPromocion === "TRADICIONAL"
+                              );
+                              return promoTradicional && promoTradicional.valor > 0 ? (
+                                <div className="discount-badge">
+                                  {promoTradicional.tipoDescuento === 'PORCENTAJE'
+                                    ? `${promoTradicional.valor}% off`
+                                    : `$${promoTradicional.valor} off`}
+                                </div>
+                              ) : null;
+                            })()}
                         </div>
+
                         <div className="cart-button-container">
                           <Button
                             variant="primary"
