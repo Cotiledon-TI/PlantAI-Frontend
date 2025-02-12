@@ -26,6 +26,8 @@ services:
     image: muinidoconeg/cotiledonapp:2.0.0-test
     depends_on:
       - database-prod
+    volumes:
+      - ./imagenes/productos:/home/node/app/imagenes/productos
     environment:
       - PORT=${API_PORT}
       - AMBIENTE=${AMBIENTE}

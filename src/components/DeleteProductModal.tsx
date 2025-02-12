@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Button, Image } from 'react-bootstrap';  // Asegúrate de importar 'Image' desde react-bootstrap
+import { Modal, Button, Image } from 'react-bootstrap';  
 import { ProductAdmin } from '../interfaces/ProductAdmin';
 import "../styles/DeleteProductModal.css";
 
@@ -11,15 +11,14 @@ interface DeleteProductModalProps {
 }
 
 const DeleteProductModal: React.FC<DeleteProductModalProps> = ({ show, product, onClose, onDelete }) => {
-  // Asegúrate de que el producto esté disponible
-  if (!product) return null; // Si el producto es null, no mostrar el modal
+  if (!product) return null; 
 
   const handleDelete = () => {
-    onDelete(product.id); // Llamamos a la función onDelete con el ID del producto
+    onDelete(product.id); 
   };
 
-  // Obtener la primera imagen del array 'imagenes'
-  const firstImage = product.imagenes && product.imagenes.length > 0 ? product.imagenes[0].ruta : null;
+  const firstImage = product.imagenes && product.imagenes.length > 0 ? `${import.meta.env.VITE_API_URL}${product.imagenes[0].ruta}`
+  : '/estaticos/default-image.jpg';
 
   return (
     <Modal show={show} onHide={onClose}>

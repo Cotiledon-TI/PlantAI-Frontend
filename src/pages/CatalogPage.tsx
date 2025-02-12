@@ -343,7 +343,7 @@ const fetchProducts = useCallback(async () => {
                         variant="top"
                         src={
                           product.imagenes && product.imagenes.length > 0
-                            ? `${import.meta.env.MODE === 'development' ? '' : import.meta.env.VITE_API_URL}${product.imagenes[0].ruta}`
+                            ? `${import.meta.env.VITE_API_URL}${product.imagenes[0].ruta}`
                             : '/estaticos/default-image.jpg'
                         }
                         alt={product.nombre}
@@ -455,7 +455,7 @@ const fetchProducts = useCallback(async () => {
                 <img
                   src={
                     selectedProduct.imagenes && selectedProduct.imagenes.length > 0
-                      ? `${import.meta.env.MODE === 'development' ? '' : import.meta.env.VITE_API_URL}${selectedProduct.imagenes[0].ruta}`
+                      ? `${import.meta.env.VITE_API_URL}${selectedProduct.imagenes[0].ruta}`
                       : '/estaticos/default-image.jpg'
                   }
                   alt={selectedProduct.nombre}
@@ -483,7 +483,7 @@ const fetchProducts = useCallback(async () => {
                       className="btn-circle"
                       onClick={() => handleIncrementQuantity(selectedProduct!)}
                     >
-                      +
+                      
                     </button>
                   </div>
 

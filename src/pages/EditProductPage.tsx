@@ -35,7 +35,6 @@ const EditProductPage: React.FC = () => {
   const [errores, setErrores] = useState<{ [key: string]: string }>({});
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const backendUrl = import.meta.env.VITE_URL_ENDPOINT_BACKEND;
-  const imageBaseUrl = 'http://localhost:3000';
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -373,11 +372,6 @@ const EditProductPage: React.FC = () => {
                       <div className="image-container" style={{ position: 'relative' }}>
                         <img
                           src={`${backendUrl}${img.ruta}`}
-                          alt={`Imagen ${index + 1}`}
-                          style={{ width: '100%', maxWidth: '200px', height: 'auto' }}
-                        />
-                         <img
-                          src={`${imageBaseUrl}${img.ruta}` }
                           alt={`Imagen ${index + 1}`}
                           style={{ width: '100%', maxWidth: '200px', height: 'auto' }}
                         />
