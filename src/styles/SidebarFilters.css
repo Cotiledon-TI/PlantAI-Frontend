@@ -42,5 +42,6 @@ input[type="range"].form-range {
   text-decoration: underline;
   border: none;
   padding: 0 !important;
+  font-family: QuickSand, sans-serif;
 }
   

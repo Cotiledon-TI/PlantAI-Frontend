@@ -41,7 +41,7 @@
 --secondary-hover: #146c4a;
 --secondary-active: #083021;
 --secondary-focus: #146c4a;
---tertiary-color: #005b73;
+--tertiary-color: #005b73!important;
 --tertiary-hover-bg: #eef6f8;
 --tertiary-active-bg: #d4ebf2;
 --tertiary-disabled-bg: transparent;

@@ -9,7 +9,7 @@ body {
   overflow-x: hidden;
 }
 
-p, h1, h2, h3, h4, h5, h6, li, a, input, button, span, select, option, strong {
+p, h1, h2, h3, h4, h5, h6, li, a, input, button, span, select, option, strong, form {
   font-family: Quicksand;
 }
 
@@ -259,7 +259,6 @@ button.btn-primary:active {
 
 button.btn-primary:focus {
   border-color: var(--primary-focus);
-  box-shadow: 0 0 0 0.25rem rgb(0 123 148 / 25%); /* Adaptar al color del focus */
 }
 
 button.btn-primary:disabled, 
@@ -307,18 +306,17 @@ button.btn-outline-primary {
 }
 
 button.btn-outline-primary:hover {
-  background-color: white;
   border-color: var(--tertiary-color);
-  color: #1A4756;
+  color: #FFF!important;
 }
 
 button.btn-outline-primary:active {
   background-color: var(--tertiary-active-bg);
+  color: #FFF!important;
 }
 
 button.btn-outline-primary:focus {
   border-color: var(--primary-focus);
-  box-shadow: 0 0 0 0.25rem rgb(0 123 148 / 25%); /* Adaptar al color del focus */
 }
 
 button.btn-outline-primary:disabled, 
