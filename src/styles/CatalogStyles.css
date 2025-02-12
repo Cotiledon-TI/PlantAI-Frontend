@@ -184,6 +184,10 @@
     color: #1A4756;
     font-size: 22px;
     font-weight: bold;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .description-text {
@@ -195,7 +199,7 @@
 .card-products-container {           
   background-color: lightgray;              
   flex-shrink: 0;
-  height: 270px !important;                   
+  height: auto;                   
   object-fit: cover;
   width: 230px; 
 }
