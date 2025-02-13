@@ -128,7 +128,7 @@ const FeaturedProducts: React.FC = () => {
                                                 variant="top"
                                                 src={
                                                     product.imagenes && product.imagenes.length > 0
-                                                        ? `${import.meta.env.MODE === 'development' ? '' : import.meta.env.VITE_API_URL}${product.imagenes[0].ruta}`
+                                                        ? `${import.meta.env.VITE_API_URL}${product.imagenes[0].ruta}`
                                                         : '/estaticos/default-image.jpg'
                                                 }
                                                 alt={product.nombre}
