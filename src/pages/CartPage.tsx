@@ -7,7 +7,7 @@ import { CartItem } from '../interfaces/CartItem';
 import { Button, Card, Col, Container, ListGroup, Row } from 'react-bootstrap';
 import '../styles/CartPage.css';
 
-const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+const baseUrl = import.meta.env.VITE_API_URL;
 
 const CartPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -92,7 +92,7 @@ const CartPage: React.FC = () => {
                         <img
                           src={
                             item.imagen
-                              ? `${import.meta.env.MODE === 'development' ? '' : baseUrl}${item.imagen}`
+                              ? `${baseUrl}${item.imagen}`
                               : '/estaticos/default-image.jpg'
                           }
                           alt={item.nombre}

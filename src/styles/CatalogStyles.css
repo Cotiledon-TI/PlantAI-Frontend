@@ -271,3 +271,19 @@
   color:#FF8C30;
 }
 
+/* Asegura que el precio y el badge se muestren en línea */
+.price-container {
+  display: flex;
+  align-items: center;
+}
+
+
+.discount-badge {
+  background-color: red;
+  color: white;
+  padding: 2px 4px;   
+  border-radius: 4px;  
+  font-size: 0.7rem;  
+  margin-left: 8px;      
+  font-weight: bold;
+}
