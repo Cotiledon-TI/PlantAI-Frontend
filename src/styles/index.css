@@ -83,16 +83,6 @@ form#search-form {
   margin-left: 18px;
 }
 
-.user-avatar{
-  background-color: #ccc;
-  border-radius: 50%;
-  display: flex;
-  float: left;
-  height: 40px;
-  margin: 10px;
-  width: 44px;
-}
-
 button a {
   color: white;
   text-decoration: none;
