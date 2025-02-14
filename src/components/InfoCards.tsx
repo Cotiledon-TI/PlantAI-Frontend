@@ -34,7 +34,7 @@ const InfoCards = () => {
               </div>
               <div className="content-container">
                 <Card.Title>CLUB PLANTAI</Card.Title>
-                <Card.Text>Descubre nuestros beneficios.</Card.Text>
+                <Card.Text>Descubre todos nuestros beneficios.</Card.Text>
                 <button className="custom-button">Beneficios</button>
               </div>
             </Card.Body>
