@@ -1,4 +1,12 @@
 :root, [data-bs-theme="light"]  {
+  /* Breakpoints */
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-xxl: 1400px;
+
   /* Tipografías */
   --font-family-primary: 'Quicksand', sans-serif;
   --font-family-secondary: 'Inter', sans-serif;

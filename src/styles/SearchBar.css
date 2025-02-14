@@ -1,9 +1,8 @@
 .search-bar { 
   box-sizing: border-box; 
-  margin: 0 auto;
-  max-width: 800px;
+  margin: 0 auto;;
+  width: 650px;
   position: relative;
-  width: 100%; 
 }
 
 .input-wrapper {
@@ -11,7 +10,6 @@
   box-sizing: border-box;
   display: flex;
   position: relative;
-  width: 100%;
 }
 
 .search-icon {
@@ -67,3 +65,16 @@
 .suggestion-item:hover {
   background-color: #f8f8f8;
 }
+
+@media (width < 576px) {
+  .search-bar {
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .search-input {
+    padding: 10px 35px;
+    font-size: 13px;
+    width: auto;
+  }
+ }

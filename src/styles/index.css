@@ -392,6 +392,28 @@ button.btn-orange.disabled {
   box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
 }
 
+ @media (min-width: 321px) and (max-width: 576px) {
+  .container {
+    width: 100%;
+    max-width: 576px;
+  }
+ 
+  .home-banner {
+    width: 90%;
+    height: 248px;
+    display: flex;
+    background-size: contain;
+  }
+
+  .home-banner-uno,
+  .home-banner-dos {
+    width: 90%;
+    height: 80px;
+    display: flex;
+    background-size: contain;
+  }
+ }
+
 /* Tabs */
 
 .tab-panel{
