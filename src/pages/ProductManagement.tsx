@@ -209,14 +209,14 @@ const ProductManagement = () => {
     };
 
     return (
-        <Container fluid className="mt-4">
+        <Container fluid className="mt-5">
             <Row>
                 <Col md={12}>
                     <UserGreeting />
                 </Col>
             </Row>
             <Row>
-                <Col>
+                <Col md={2}>
                     <AdminSideBar />
                 </Col>
 
