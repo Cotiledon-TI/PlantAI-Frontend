@@ -114,7 +114,7 @@ const CatalogPage: React.FC = () => {
     const productId = product.id;
     const existingCartItem = cart.find((item) => item.id === productId);
     const quantity = existingCartItem ? existingCartItem.cantidad : 1;
-
+  
     if (quantity > product.stock) {
       setErrorMessages((prevMessages) => ({
         ...prevMessages,
@@ -122,18 +122,17 @@ const CatalogPage: React.FC = () => {
       }));
       return;
     }
-
-    const imagePath =
-      product.imagenes && product.imagenes.length > 0
-        ? product.imagenes[0].ruta
-        : '/estaticos/default-image.jpg';
-
+  
+    const imagePath = product.imagenes && product.imagenes.length > 0 
+      ? product.imagenes[0].ruta 
+      : '/estaticos/default-image.jpg';
+  
     dispatch(
       addToCart({
         id: product.id,
         nombre: product.nombre,
         precio: product.precio,
-        imagen: imagePath,
+        imagen: imagePath, 
         descripcion: product.descripcion,
         cantidad: quantity,
         unidadesVendidas: product.unidadesVendidas,
@@ -143,9 +142,10 @@ const CatalogPage: React.FC = () => {
         largo: product.largo,
         peso: product.peso,
         stock: product.stock,
+        promocionesDestacadas: product.promocionesDestacadas,
       })
     );
-
+  
     setSelectedProduct(product);
     setShowOffcanvas(true);
     setErrorMessages((prevMessages) => ({
@@ -153,6 +153,7 @@ const CatalogPage: React.FC = () => {
       [product.id]: '',
     }));
   };
+  
 
   const handlePageChange = (page: number) => {
     if (page !== currentPage && page > 0 && page <= totalPages) {
