@@ -399,19 +399,22 @@ button.btn-orange.disabled {
   }
  
   .home-banner {
-    width: 90%;
+    width: 60%;
     height: 248px;
     display: flex;
-    background-size: contain;
+    background-size: cover;
+    margin: 120px auto 20px;
   }
 
   .home-banner-uno,
   .home-banner-dos {
-    width: 90%;
+    width: 60%;
     height: 80px;
     display: flex;
-    background-size: contain;
+    background-size: cover;
+    margin: 20px auto 0;
   }
+
  }
 
 /* Tabs */
