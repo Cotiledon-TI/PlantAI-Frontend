@@ -16,7 +16,7 @@
 
 /* Estilos para los encabezados de la tabla */
 .product-table thead th {
-    font-family: 'Quicksand', sans-serif;
+    font-family: Quicksand, sans-serif;
     font-size: 14px;
     font-weight: 600;
     line-height: 13px;
@@ -54,12 +54,13 @@
 
 /* Filas pares */
 .product-table tbody tr:nth-child(even) {
-    background-color: #EEEEEE; /* Color de fondo para filas pares */
+    background-color: #EEE; /* Color de fondo para filas pares */
 }
 
 .product-table tbody tr.selected-product:nth-child(odd) {
     background-color: #6F8F75 !important; /* Mantén el color seleccionado en las filas impares */
 }
+
 .product-table tbody tr.selected-product:nth-child(even) {
     background-color: #6F8F75 !important; /* Mantén el color seleccionado en las filas pares */
 }

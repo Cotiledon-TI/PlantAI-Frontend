@@ -6,7 +6,7 @@ import { Button, Row, Col, Container, Offcanvas } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import { Link, useNavigate } from 'react-router-dom';
 import { RootState } from '../states/store';
-import '../styles/CatalogStyles.css';
+import '../styles/FeaturedProducts.css';
 
 const FeaturedProducts: React.FC = () => {
     const [products, setProducts] = useState<productsCatalog[]>([]);
@@ -31,7 +31,7 @@ const FeaturedProducts: React.FC = () => {
             try {
                 setLoading(true);
                 const baseUrl = import.meta.env.VITE_API_URL;
-                const response = await fetch(`${baseUrl}/catalogo?page=1&pageSize=12`, {
+                const response = await fetch(`${baseUrl}/catalogo?page=1&pageSize=6`, {
                     method: 'GET',
                     headers: {
                         'Accept': 'application/json',
@@ -110,14 +110,14 @@ const FeaturedProducts: React.FC = () => {
 
     return (
         <Container fluid>
-            <Row className="justify-content-center">
-                <Col xs="auto">
-                    <h2 className="text-l-medium mt-4 mb-4">Productos Destacados</h2>
-                    <Row className="">
+            <Row>
+            <h2 className="text-l-medium mt-4 mb-4 me-auto">Productos destacados</h2>
+                <Col className='products-container h-100'>
+                    <Row xs={1} sm={3} md={3} lg={6} className="g-3">
                         {Array.isArray(products) && products.length > 0 ? (
                             products.map((product) => (
-                                <Col className='col-sm-12 col-md-3 col-lg-3 mb-5'>
-                                    <Card className="h-100 position-relative">
+                                <Col>
+                                    <Card className="product-card h-100">
                                         <span className="material-symbols-outlined position-absolute top-0 end-0 m-2 z-1" style={{ color: '#1A4756' }}>
                                             pets
                                         </span>
