@@ -6,6 +6,7 @@
     height: auto;
     width: 100%;
     padding: 20px 5px;
+    border-radius: 8px;
 }
 
 .product-card {
