@@ -23,7 +23,7 @@
 - Clona el repositorio desde GitHub ejecutando el siguiente comando:
 
   ```bash
-  git clone https://github.com/bootcamp-uchile-2024/grupo-3-frontend.git
+  git clone https://github.com/Cotiledon-TI/PlantAI-Frontend.git
   ```
 
 - Verifica que todo se clonó correctamente, usando el comando:
@@ -84,15 +84,6 @@ Crear: stylelintrc.json en la raíz:
 {
   "extends": "stylelint-config-standard"
 }
-
-- Agregar script a package.json:
-
-{
-  "scripts": {
-    "lint:css": "stylelint **/*.css"
-  }
-}
-
 
 ### 5. Traer los últimos cambios
 
