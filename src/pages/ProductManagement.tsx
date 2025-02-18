@@ -209,9 +209,10 @@ const ProductManagement = () => {
     };
 
     return (
+        <div className='container'>
         <Container fluid className="mt-5">
             <Row>
-                <Col md={12}>
+                <Col md={10}>
                     <UserGreeting />
                 </Col>
             </Row>
@@ -354,6 +355,7 @@ const ProductManagement = () => {
         onDelete={handleDeleteProduct}
       />
         </Container>
+    </div>
     );
 };
 
