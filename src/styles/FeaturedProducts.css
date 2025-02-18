@@ -1,4 +1,4 @@
-.products-container {
+.featured-products-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

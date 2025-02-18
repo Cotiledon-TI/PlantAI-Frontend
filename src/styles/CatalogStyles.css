@@ -1,8 +1,13 @@
 /* Catalog Page */
 
 .catalog-container {
-  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: auto;
+  max-width: 1440px;
 }
+
 
 .catalog-container h1 {
   color: #333;
@@ -18,22 +23,20 @@
   justify-content: center;
 }
 
-.product-card {
+.catalog-card {
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 1px 4px rgb(0 0 0 / 10%);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin-bottom: 20px;
   overflow: hidden;
   text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-  width: 300px;
+  transition: transform 0.3s;
+  width: 230px;
 }
 
-.product-card:hover {
-  box-shadow: 0 6px 12px rgb(0 0 0 / 20%);
+.catalog-card:hover {
   transform: translateY(-5px);
 }
 
@@ -104,6 +107,37 @@
     margin: 150px 0 0;
     width: 100%;
 }
+
+.catalog-banner .search-bar {
+  box-sizing: border-box;
+  width: 650px;
+}
+
+@media (width <= 1200px) {
+  .catalog-banner .search-bar {
+    width: 650px;
+  }
+ }
+ 
+ @media (width <= 992px) {
+  .catalog-banner .search-bar {
+    width: 600px;
+  }
+ }
+ 
+ @media (width <= 768px) {
+  .catalog-banner .search-bar {
+    width: 100%;
+    width: 500px;
+  }
+ }
+ 
+ @media (width < 576px) {
+  .catalog-banner .search-bar {
+    width: 100%;
+    width: 440px;
+  }
+ }
 
 /* Estilos generales para la paginación */
 

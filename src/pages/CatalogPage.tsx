@@ -322,24 +322,24 @@ const CatalogPage: React.FC = () => {
   };
 
   return (
-    <>
+    <div className='container'>
+    <Container fluid className='catalog-container'>
+      <Row>
       <div className="catalog-banner">
-        <Container className="banner-content text-center">
           <SearchBar />
-        </Container>
       </div>
-      <Container fluid>
+      
         <SortFilters onSortChange={handleSortChange} />
-        <Row>
+        
           <Col xs={12} sm={3} className="sidebar-filters">
             <SidebarFilters onFilterChange={handleFilterChange} />
           </Col>
-          <Col xs={12} sm={9}>
-            <Row lg={4} className="g-4">
+          <Col xs={12} sm={9} className="catalog-products">
+            <Row xs={1} sm={2} md={3} lg={4} className="g-3">
               {Array.isArray(products) && products.length > 0 ? (
                 products.map((product) => (
                   <Col key={product.id}>
-                    <Card>
+                    <Card className='catalog-card'>
                       <Link to={`/catalogo/producto/${product.id}`}>
 
                       <Card.Img
@@ -512,7 +512,7 @@ const CatalogPage: React.FC = () => {
           </div>
         </Offcanvas>
       </Container>
-    </>
+    </div>
   );
 };
 
