@@ -58,7 +58,7 @@ const EditProductPage: React.FC = () => {
       }
     };
     fetchProduct();
-  }, [id]);
+  }, [id, backendUrl]);
 
   const validate = () => {
     const newErrors: { [key: string]: string } = {};
