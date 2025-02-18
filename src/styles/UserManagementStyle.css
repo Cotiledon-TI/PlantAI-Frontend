@@ -1,11 +1,24 @@
-.product-management-content {
-    align-items: center;
-    background: #f5f5f5;
-    border-radius: 0 0 8px 8px;
-    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
-    margin-top: 10rem;
-    padding: 16px;
+.user-management-container {
+  margin-top: 1rem;
+  margin-bottom: 6rem;
+  padding: 1rem;
+  background: #f5f5f5;
+  border-radius: 0 0 8px 8px;
+ }
+ 
+ @media (width <= 768px) {
+  .user-management-container {
+    margin: 0.5rem 0 4rem;
+    padding: 0.75rem;
   }
+ }
+ 
+ @media (width <= 576px) {
+  .user-management-container {
+    margin-bottom: 3rem;
+    padding: 0.5rem;
+  }
+ }
   
   /* Modal Estilos */
   .modal-header {
@@ -49,15 +62,6 @@
   .btn-modify-position {
     position: relative;
   }
-  
-  /* Otras clases para márgenes y disposición */
-  .mt-3 {
-    margin-top: 3rem;
-  }
-  
-  .mt-2 {
-    margin-top: 2rem;
-  }
 
   .transparent-button {
     background-color: transparent;
@@ -68,3 +72,61 @@
     border-color: #bbb;
     color: #b9b9b9; 
   }
+
+  .custom-tabs {
+    display: inline-flex;
+   }
+   
+   .search-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+   }
+   
+   .user-form {
+    display: grid;
+    gap: 1.5rem;
+   }
+   
+   .user-form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+   }
+   
+   @media (width <= 992px) {
+    .search-section {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .custom-tabs {
+      font-size: small;
+     }
+
+   }
+   
+   @media (width <= 768px) {
+    .search-section,
+    .user-form-row {
+      grid-template-columns: 1fr;
+    }
+    
+    .admin-sidebar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+    }
+   }
+   
+   @media (width <= 576px) {
+    .container {
+      padding: 0.5rem;
+    }
+    
+    .button-group {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+   }

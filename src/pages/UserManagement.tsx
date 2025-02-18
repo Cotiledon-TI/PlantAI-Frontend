@@ -317,6 +317,7 @@ const UserManagement = () => {
 
 
   return (
+    <div className='container'>
     <Container fluid className="mt-5">
       <Row>
         <Col md={12}>
@@ -329,7 +330,7 @@ const UserManagement = () => {
         </Col>
 
         <Col md={10}>
-          <div style={{ marginTop: "1rem", marginBottom: "6rem", padding: "16px", background: "#F5F5F5", borderRadius: "0px 0px 8px 8px" }}>
+          <div className="user-management-container">
           <Tabs defaultActiveKey="crearUsuario" className="custom-tabs mb-3">
 
           <Tab eventKey="crearUsuario" title="Crear Usuario">
@@ -732,6 +733,7 @@ const UserManagement = () => {
         </Modal.Footer>
       </Modal>
     </Container>
+    </div>
   );
 };
 
