@@ -82,7 +82,23 @@
 Crear: stylelintrc.json en la raíz:
 
 {
-  "extends": "stylelint-config-standard"
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "at-rule-no-unknown": null,
+    "no-descending-specificity": null,
+    "no-duplicate-selectors": null,
+    "selector-class-pattern": null,
+    "custom-property-pattern": null,
+    "font-family-no-missing-generic-family-keyword": null,
+    "declaration-block-no-shorthand-property-overrides": null,
+    "no-empty-source": null,
+    "number-max-precision": 8
+  },
+  "ignoreFiles": [
+    "dist/**/*",
+    "build/**/*",
+    "node_modules/**/*"
+  ]
 }
 
 ### 5. Traer los últimos cambios
