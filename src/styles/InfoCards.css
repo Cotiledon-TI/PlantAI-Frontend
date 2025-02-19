@@ -26,7 +26,7 @@
   }
 
   .icon-container-circle {
-    background-color: #1A4756;
+    background-color: #32533E;
     border-radius: 50%;
     width: 80px;
     height: 80px;
@@ -37,7 +37,7 @@
   }
 
   .icon-container .material-symbols-outlined {
-    color: #1A4756;
+    color: #32533E;
     font-size: 80px;
   }
   
@@ -51,7 +51,7 @@
   }
   
   .card-title {
-    color: #1A4756;
+    color: #32533E;
     font-weight: 600;
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
@@ -63,7 +63,7 @@
   }
   
   .custom-button {
-    background-color: #1A4756;
+    background-color: #32533E;
     color: white;
     height: 34px !important;
     border: none;
@@ -75,7 +75,7 @@
   }
   
   .custom-button:hover {
-    background-color: #007b94;
+    background-color: #4d8160;
   }
   
   @media (width <= 992px) {
