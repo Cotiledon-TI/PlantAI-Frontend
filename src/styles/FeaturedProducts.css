@@ -5,8 +5,9 @@
     background-color: #C6D4CB;
     height: auto;
     width: 100%;
-    padding: 20px 5px;
+    padding: 10px  5px 30px 3px;
     border-radius: 8px;
+    margin-bottom: 1.4rem;
 }
 
 .product-card {

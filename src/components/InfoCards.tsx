@@ -1,14 +1,14 @@
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Row, Col, Card } from "react-bootstrap";
 import "../styles/InfoCards.css";
 
 const InfoCards = () => {
   return (
-    <Container className="mt-4">
-      <Row className="justify-content-center g-4">
+    <div className="mt-4">
+      <Row className="justify-content-center g-5">
         {/* Card Envío */}
         <Col lg={4}>
           <Card className="info-card">
-            <Card.Body className="d-flex align-items-center">
+            <Card.Body className="d-flex justify-content-center">
               <div className="icon-container">
                 <span className="material-symbols-outlined">
                   local_shipping
@@ -26,7 +26,7 @@ const InfoCards = () => {
         {/* Card Club */}
         <Col lg={4}>
           <Card className="info-card">
-            <Card.Body className="d-flex align-items-center">
+            <Card.Body className="d-flex justify-content-center">
               <div className="icon-container-circle">
                 <span className="material-symbols-outlined">
                   star
@@ -44,7 +44,7 @@ const InfoCards = () => {
         {/* Card Consejos */}
         <Col lg={4}>
           <Card className="info-card">
-            <Card.Body className="d-flex align-items-center">
+            <Card.Body className="d-flex justify-content-center">
               <div className="icon-container">
                 <div className="plant-icon">
                   <span className="material-symbols-outlined">
@@ -61,7 +61,7 @@ const InfoCards = () => {
           </Card>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 };
 
