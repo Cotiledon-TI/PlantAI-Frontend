@@ -34,14 +34,17 @@ const SearchBar = () => {
           >
             <span className="material-symbols-outlined">search</span>
           </span>
-          <input 
-            placeholder="Busca tu planta" 
-            aria-label="Busca tu planta" 
+          <input
+            placeholder="Busca tu planta"
+            aria-label="Busca tu planta"
             className="search-input"
             value={searchTerm}
             onChange={handleInputChange}
             onKeyPress={handleKeyPress}
           />
+          <span className="material-symbols-outlined camera-icon">
+            photo_camera
+          </span>
         </div>
       </div>
     </div>
