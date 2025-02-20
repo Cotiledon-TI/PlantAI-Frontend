@@ -50,7 +50,7 @@
 
 /* Logo */
 .footer-logo {
-  background-image: url("/src/assets/LOGO_PLANTAI.png");
+  background-image: url("/src/assets/LOGO_PLANTAI_inverse.png");
   background-position: right;
   background-repeat: no-repeat;
   background-size: contain;
