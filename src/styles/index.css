@@ -389,31 +389,41 @@ button.btn-orange.disabled {
 .home-banner-uno,
 .home-banner-dos {
   border-radius: 8px;
-  box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
 }
 
-@media (321px <= width <= 576px) {
+@media (321px < width <= 850px) {
   .container {
     width: 100%;
-    max-width: 576px;
+    max-width: 850px;
   }
  
   .home-banner {
-    width: 60%;
+    width: 100%;
     height: 248px;
     display: flex;
     background-size: cover;
-    margin: 120px auto 20px;
+    margin: 120px auto 0;
+    box-shadow: none;
   }
 
   .home-banner-uno,
   .home-banner-dos {
-    width: 60%;
-    height: 80px;
+    width: 100%;
     display: flex;
-    background-size: cover;
-    margin: 20px auto 0;
+    background-size: contain;
+    margin: 0 auto;
+    box-shadow: none;
   }
+
+  .home-banner-uno {
+    background-image: url('/src/assets/mobile-banner02.png')!important; 
+  }
+  
+  .home-banner-dos {
+    background-image: url('/src/assets/mobile-banner01.png')!important;
+    margin-top: -4rem; 
+  }
+
 
  }
 
