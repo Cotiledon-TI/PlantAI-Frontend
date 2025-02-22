@@ -114,7 +114,7 @@ const FeaturedProducts: React.FC = () => {
             <Row>
             <h2 className="text-l-medium mt-4 mb-4 me-auto">Productos destacados</h2>
                 <Col className='featured-products-container h-100'>
-                    <Row xs={3} sm={3} md={12} lg={6} className="g-3">
+                    <Row xs={1} sm={3} md={12} lg={6} className="g-3">
                         {Array.isArray(products) && products.length > 0 ? (
                             products.map((product) => (
                                 <Col>

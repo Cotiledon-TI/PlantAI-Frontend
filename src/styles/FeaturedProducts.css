@@ -155,14 +155,19 @@
 
 @media (width <=576px) {
     .product-card {
-        width: 100% !important;
+        width: 40% !important;
     }
 
     .featured-products-container {
-        padding: 0 20px;
+        padding: 10px 0 30px;
     }
 
     .card-products-container {
         height: 200px;
+    }
+
+    h2.text-l-medium {
+        font-size: 1.7rem;
+        text-align: center;
     }
 }

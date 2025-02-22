@@ -69,3 +69,14 @@
   text-align: right;
 }
  
+@media (width <=576px) {
+  .banner-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    width: 50%;
+    margin: 0 auto;
+    padding: 1rem 0;
+    font-family: Quicksand, sans-serif;
+   }
+
+}

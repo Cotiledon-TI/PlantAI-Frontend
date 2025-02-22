@@ -30,3 +30,10 @@
     font-size: inherit;
     font-weight: inherit;
   }
+
+  @media (width <=576px) {
+    .map-title {
+        font-size: 1.7rem;
+        text-align: center!important;
+    }
+}

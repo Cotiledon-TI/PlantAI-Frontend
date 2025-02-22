@@ -391,7 +391,7 @@ button.btn-orange.disabled {
   border-radius: 8px;
 }
 
-@media (321px < width <= 850px) {
+@media (850px < width <= 570px) {
   .container {
     width: 100%;
     max-width: 850px;
@@ -423,9 +423,42 @@ button.btn-orange.disabled {
     background-image: url('/src/assets/mobile-banner01.png')!important;
     margin-top: -4rem; 
   }
+}
 
-
- }
+  @media (min-width: 320px) and (max-width: 570px) {
+    .container {
+      width: 60%;
+      max-width: 850px;
+    }
+     
+    .home-banner {
+      width: 60%;
+      height: 248px;
+      display: flex;
+      background-size: cover;
+      margin: 126px auto -15px;
+      box-shadow: none;
+    }
+  
+    .home-banner-uno,
+    .home-banner-dos {
+      width: 60%;
+      display: flex;
+      background-size: contain;
+      margin: 0 auto;
+      box-shadow: none;
+    }
+  
+    .home-banner-uno {
+      background-image: url('/src/assets/mobile-banner02.png')!important; 
+    }
+      
+    .home-banner-dos {
+      background-image: url('/src/assets/mobile-banner01.png')!important;
+      margin-top: -4rem; 
+      margin-bottom: -2rem;
+    }
+  }
 
 /* Tabs */
 
