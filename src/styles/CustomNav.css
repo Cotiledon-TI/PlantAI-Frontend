@@ -208,14 +208,14 @@ a#user-dropdown {
     line-height: 8px;
     height: 8px;
     padding: 0;
-    margin: 0 auto;
+    margin-left: 15px;
     display: flex;
     flex-wrap: wrap;
     justify-content: left!important;
   }
 
   .nav-link.cart-link {
-    margin: -0.1rem 0 0 !important;
+    margin: -0.1rem 0 0 15px!important;
   }
 }
 
@@ -224,6 +224,7 @@ a#user-dropdown {
   color: var(--primary-hover)!important;
   font-weight: 600;
   position: relative;
+  left: 15px;
 }
 
 .nav-link.active::after,
@@ -251,4 +252,18 @@ a#user-dropdown {
   border: none!important;
   outline: none;
   box-shadow: none !important;
+}
+
+.nav-actions {
+  float: right;
+}
+
+.cart-link {
+  position: relative;
+  top: 5px;
+}
+
+.responsive-navbar-nav {
+  position: relative;
+  left: 10px;
 }
