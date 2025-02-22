@@ -6,7 +6,7 @@ const InfoCards = () => {
     <div className="mt-4">
       <Row className="justify-content-center g-5">
         {/* Card Envío */}
-        <Col lg={4}>
+        <Col xs={7} lg={4}>
           <Card className="info-card">
             <Card.Body className="d-flex justify-content-center">
               <div className="icon-container">
@@ -24,7 +24,7 @@ const InfoCards = () => {
         </Col>
 
         {/* Card Club */}
-        <Col lg={4}>
+        <Col xs={7} lg={4}>
           <Card className="info-card">
             <Card.Body className="d-flex justify-content-center">
               <div className="icon-container-circle">
@@ -42,7 +42,7 @@ const InfoCards = () => {
         </Col>
 
         {/* Card Consejos */}
-        <Col lg={4}>
+        <Col xs={7} lg={4}>
           <Card className="info-card">
             <Card.Body className="d-flex justify-content-center">
               <div className="icon-container">
