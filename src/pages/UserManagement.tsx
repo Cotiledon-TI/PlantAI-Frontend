@@ -8,6 +8,7 @@ import CustomPagination from "../components/CustomPagination";
 import AdminSideBar from "../components/AdminSideBar";
 import UserGreeting from "../components/UserGreeting";
 import "../styles/UserManagementStyle.css";
+import Breadcrumbs from "../components/Breadcrumb";
 
 const UserManagement = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -320,7 +321,10 @@ const UserManagement = () => {
     <div className='container'>
     <Container fluid className="mt-5">
       <Row>
-        <Col md={12}>
+      <Col md={6} className="mt-5 py-4">
+          <Breadcrumbs />
+        </Col>   
+        <Col md={6}>
           <UserGreeting />
         </Col>
       </Row>
@@ -328,7 +332,7 @@ const UserManagement = () => {
         <Col md={2}>
           <AdminSideBar />
         </Col>
-
+        
         <Col md={10}>
           <div className="user-management-container">
           <Tabs defaultActiveKey="crearUsuario" className="custom-tabs mb-3">

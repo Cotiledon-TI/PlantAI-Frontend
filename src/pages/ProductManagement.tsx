@@ -9,6 +9,7 @@ import { ProductAdmin } from '../interfaces/ProductAdmin';
 import CustomPagination from '../components/CustomPagination';
 import { Link } from 'react-router-dom';
 import DeleteProductModal from '../components/DeleteProductModal';
+import Breadcrumbs from '../components/Breadcrumb';
 
 const ProductManagement = () => {
     const [products, setProducts] = useState<ProductAdmin[]>([]);
@@ -22,9 +23,9 @@ const ProductManagement = () => {
     const [searchSKU, setSearchSKU] = useState<string>('');
     const [searchCategory, setSearchCategory] = useState<number | string>('');
 
-  // Estado para controlar el modal de confirmación de eliminación
-  const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
-  const [deletingProduct, setDeletingProduct] = useState<ProductAdmin | null>(null);
+    // Estado para controlar el modal de confirmación de eliminación
+    const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
+    const [deletingProduct, setDeletingProduct] = useState<ProductAdmin | null>(null);
 
     // Mensaje de error para no encontrar producto
     const [noProductFound, setNoProductFound] = useState<boolean>(false);
@@ -126,10 +127,10 @@ const ProductManagement = () => {
 
         if (filteredProducts.length > 0) {
             setSelectedProduct(filteredProducts[0]);
-            setNoProductFound(false); 
+            setNoProductFound(false);
         } else {
             setSelectedProduct(null);
-            setNoProductFound(true); 
+            setNoProductFound(true);
         }
     };
 
@@ -153,36 +154,36 @@ const ProductManagement = () => {
         }
     };
 
-     // Función para abrir el modal de eliminación
-  const openDeleteModal = (product: ProductAdmin) => {
-    setDeletingProduct(product); // Guardar el producto que se quiere eliminar
-    setShowDeleteModal(true); // Mostrar el modal
-  };
+    // Función para abrir el modal de eliminación
+    const openDeleteModal = (product: ProductAdmin) => {
+        setDeletingProduct(product); // Guardar el producto que se quiere eliminar
+        setShowDeleteModal(true); // Mostrar el modal
+    };
 
-  // Función para cerrar el modal de eliminación
-  const closeDeleteModal = () => {
-    setShowDeleteModal(false); // Cerrar el modal
-    setDeletingProduct(null); // Limpiar el producto seleccionado
-  };
+    // Función para cerrar el modal de eliminación
+    const closeDeleteModal = () => {
+        setShowDeleteModal(false); // Cerrar el modal
+        setDeletingProduct(null); // Limpiar el producto seleccionado
+    };
 
     // Eliminar un producto
     const handleDeleteProduct = async (productId: number) => {
-            try {
-                const backendUrl = import.meta.env.VITE_API_URL;
-                const token = localStorage.getItem("token");
-                const response = await fetch(`${backendUrl}/productos/${productId}`, {
-                    method: 'DELETE',
-                    headers: {
-                        "Authorization": `Bearer ${token}`,
-                    },
-                });
-                if (!response.ok) {
-                    throw new Error('Error al eliminar el producto');
-                }
-                fetchProducts();
-            } catch (error) {
-                console.error('Error al eliminar el producto:', error);
+        try {
+            const backendUrl = import.meta.env.VITE_API_URL;
+            const token = localStorage.getItem("token");
+            const response = await fetch(`${backendUrl}/productos/${productId}`, {
+                method: 'DELETE',
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                },
+            });
+            if (!response.ok) {
+                throw new Error('Error al eliminar el producto');
             }
+            fetchProducts();
+        } catch (error) {
+            console.error('Error al eliminar el producto:', error);
+        }
     };
 
     const resetSearchFilters = () => {
@@ -210,152 +211,155 @@ const ProductManagement = () => {
 
     return (
         <div className='container'>
-        <Container fluid className="mt-5">
-            <Row>
-                <Col md={10}>
-                    <UserGreeting />
-                </Col>
-            </Row>
-            <Row>
-                <Col md={2}>
-                    <AdminSideBar />
-                </Col>
+            <Container fluid className="mt-5">
+                <Row>
+                    <Col md={6} className="mt-5 py-4">
+                        <Breadcrumbs />
+                    </Col>
+                    <Col md={6}>
+                        <UserGreeting />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={2}>
+                        <AdminSideBar />
+                    </Col>
 
-                {/* Contenido principal */}
-                <Col md={10}>
-                    <div className="product-management-container">
-                        <Tabs defaultActiveKey="productos" className="custom-tabs mb-3">
-                            {/* Cargar Productos */}
-                            <Tab eventKey="productos" title="Crear Productos">
-                                <div>
-                                    <CreateProduct />
-                                </div>
-                            </Tab>
+                    {/* Contenido principal */}
+                    <Col md={10}>
+                        <div className="product-management-container">
+                            <Tabs defaultActiveKey="productos" className="custom-tabs mb-3">
+                                {/* Cargar Productos */}
+                                <Tab eventKey="productos" title="Crear Productos">
+                                    <div>
+                                        <CreateProduct />
+                                    </div>
+                                </Tab>
 
-                            {/* Eliminar Producto */}
-                            <Tab eventKey="eliminarProducto" title="Gestión de Productos">
-                                {loading ? (
-                                    <Spinner animation="border" variant="primary" />
-                                ) : (
-                                    <>
-                                        <Row>
-                                            {/* Buscador por Nombre */}
-                                            <Col md={3}>
-                                                <Form.Label>Buscar por Nombre</Form.Label>
-                                                <Form className="d-flex" onSubmit={(e) => e.preventDefault()}>
-                                                    <Form.Control
-                                                        type="text"
-                                                        placeholder="Nombre"
-                                                        value={searchName}
-                                                        onChange={(e) => handleSearchChange(e, 'name')}
-                                                        disabled={isFieldDisabled('name')}
-                                                    />
-                                                </Form>
-                                            </Col>
-                                            {/* Buscador por Categoría */}
-                                            <Col md={3}>
-                                                <Form.Label>Buscar por Categoría</Form.Label>
-                                                <Form className="d-flex" onSubmit={(e) => e.preventDefault()}>
-                                                    <Form.Control
-                                                        type="text"
-                                                        placeholder="Categoría"
-                                                        value={searchCategory}
-                                                        onChange={(e) => handleSearchChange(e, 'category')}
-                                                        disabled={isFieldDisabled('category')}
-                                                    />
-                                                </Form>
-                                            </Col>
-                                            {/* Buscador por SKU */}
-                                            <Col md={3}>
-                                                <Form.Label>Buscar por SKU</Form.Label>
-                                                <Form className="d-flex" onSubmit={(e) => e.preventDefault()}>
-                                                    <Form.Control
-                                                        type="text"
-                                                        placeholder="SKU"
-                                                        value={searchSKU}
-                                                        onChange={(e) => handleSearchChange(e, 'sku')}
-                                                        disabled={isFieldDisabled('sku')}
-                                                    />
-                                                </Form>
-                                            </Col>
-                                            {/* Buscador por ID */}
-                                            <Col md={3}>
-                                                <Form.Label>Buscar por ID</Form.Label>
-                                                <Form className="d-flex" onSubmit={(e) => e.preventDefault()}>
-                                                    <Form.Control
-                                                        type="number"
-                                                        placeholder="ID"
-                                                        value={searchId}
-                                                        onChange={(e) => handleSearchChange(e, 'id')}
-                                                        disabled={isFieldDisabled('id')}
-                                                    />
-                                                </Form>
-                                            </Col>
-                                            <Col className='d-flex justify-content-end'>
-                                                <Button onClick={handleSearchSubmit} variant="primary" className="botonbuscador">
-                                                    <div> Buscar Producto
-                                                    </div>
-                                                </Button>
-                                            </Col>
-                                        </Row>
-
-                                        {/* Mostrar mensaje si no se encuentra el producto */}
-                                        {noProductFound && (
-                                            <Alert variant="danger">
-                                                No se encontraron productos con los filtros aplicados.
-                                            </Alert>
-                                        )}
-
-                                        <ProductTable
-                                            currentProducts={currentPageProducts}
-                                            selectedProduct={selectedProduct}
-                                            setSelectedProduct={handleProductSelect}
-                                        />
-
-
-                                        {selectedProduct && (
-                                            <div className="d-flex mt-3 gap-2">
-                                                 <Link to={`/editar-producto/${selectedProduct.id}`}>
-                                                    <Button variant="secondary">
-                                                        Editar Producto {selectedProduct.id}
-                                                    </Button>
-                                                </Link>
-                                                <Button variant="outline-primary" onClick={resetSearchFilters}>
-                                                    Cancelar
-                                                </Button>
+                                {/* Eliminar Producto */}
+                                <Tab eventKey="eliminarProducto" title="Gestión de Productos">
+                                    {loading ? (
+                                        <Spinner animation="border" variant="primary" />
+                                    ) : (
+                                        <>
+                                            <Row>
+                                                {/* Buscador por Nombre */}
+                                                <Col md={3}>
+                                                    <Form.Label>Buscar por Nombre</Form.Label>
+                                                    <Form className="d-flex" onSubmit={(e) => e.preventDefault()}>
+                                                        <Form.Control
+                                                            type="text"
+                                                            placeholder="Nombre"
+                                                            value={searchName}
+                                                            onChange={(e) => handleSearchChange(e, 'name')}
+                                                            disabled={isFieldDisabled('name')}
+                                                        />
+                                                    </Form>
+                                                </Col>
+                                                {/* Buscador por Categoría */}
+                                                <Col md={3}>
+                                                    <Form.Label>Buscar por Categoría</Form.Label>
+                                                    <Form className="d-flex" onSubmit={(e) => e.preventDefault()}>
+                                                        <Form.Control
+                                                            type="text"
+                                                            placeholder="Categoría"
+                                                            value={searchCategory}
+                                                            onChange={(e) => handleSearchChange(e, 'category')}
+                                                            disabled={isFieldDisabled('category')}
+                                                        />
+                                                    </Form>
+                                                </Col>
+                                                {/* Buscador por SKU */}
+                                                <Col md={3}>
+                                                    <Form.Label>Buscar por SKU</Form.Label>
+                                                    <Form className="d-flex" onSubmit={(e) => e.preventDefault()}>
+                                                        <Form.Control
+                                                            type="text"
+                                                            placeholder="SKU"
+                                                            value={searchSKU}
+                                                            onChange={(e) => handleSearchChange(e, 'sku')}
+                                                            disabled={isFieldDisabled('sku')}
+                                                        />
+                                                    </Form>
+                                                </Col>
+                                                {/* Buscador por ID */}
+                                                <Col md={3}>
+                                                    <Form.Label>Buscar por ID</Form.Label>
+                                                    <Form className="d-flex" onSubmit={(e) => e.preventDefault()}>
+                                                        <Form.Control
+                                                            type="number"
+                                                            placeholder="ID"
+                                                            value={searchId}
+                                                            onChange={(e) => handleSearchChange(e, 'id')}
+                                                            disabled={isFieldDisabled('id')}
+                                                        />
+                                                    </Form>
+                                                </Col>
                                                 <Col className='d-flex justify-content-end'>
-                                                <Button variant="btn btn-outline-secondary" onClick={() =>  {console.log(selectedProduct); openDeleteModal(selectedProduct!)}}>
-                                                    Eliminar Producto {selectedProduct.id}
-                                                </Button>
-                                               </Col>
-                                            </div>
-                                        )}
+                                                    <Button onClick={handleSearchSubmit} variant="primary" className="botonbuscador">
+                                                        <div> Buscar Producto
+                                                        </div>
+                                                    </Button>
+                                                </Col>
+                                            </Row>
 
-                                        {/* Paginación personalizada */}
-                                        <div className="d-flex justify-content-center w-100 mt-3">
-                                            <CustomPagination
-                                                currentPage={currentPage}
-                                                totalPages={pageCount}
-                                                paginate={paginate}
+                                            {/* Mostrar mensaje si no se encuentra el producto */}
+                                            {noProductFound && (
+                                                <Alert variant="danger">
+                                                    No se encontraron productos con los filtros aplicados.
+                                                </Alert>
+                                            )}
+
+                                            <ProductTable
+                                                currentProducts={currentPageProducts}
+                                                selectedProduct={selectedProduct}
+                                                setSelectedProduct={handleProductSelect}
                                             />
-                                        </div>
-                                    </>
-                                )}
-                            </Tab>
-                        </Tabs>
-                    </div>
-                </Col>
-            </Row>
 
-              {/* Modal de confirmación de eliminación */}
-      <DeleteProductModal
-        show={showDeleteModal}
-        product={deletingProduct}
-        onClose={closeDeleteModal}
-        onDelete={handleDeleteProduct}
-      />
-        </Container>
-    </div>
+
+                                            {selectedProduct && (
+                                                <div className="d-flex mt-3 gap-2">
+                                                    <Link to={`/editar-producto/${selectedProduct.id}`}>
+                                                        <Button variant="secondary">
+                                                            Editar Producto {selectedProduct.id}
+                                                        </Button>
+                                                    </Link>
+                                                    <Button variant="outline-primary" onClick={resetSearchFilters}>
+                                                        Cancelar
+                                                    </Button>
+                                                    <Col className='d-flex justify-content-end'>
+                                                        <Button variant="btn btn-outline-secondary" onClick={() => { console.log(selectedProduct); openDeleteModal(selectedProduct!) }}>
+                                                            Eliminar Producto {selectedProduct.id}
+                                                        </Button>
+                                                    </Col>
+                                                </div>
+                                            )}
+
+                                            {/* Paginación personalizada */}
+                                            <div className="d-flex justify-content-center w-100 mt-3">
+                                                <CustomPagination
+                                                    currentPage={currentPage}
+                                                    totalPages={pageCount}
+                                                    paginate={paginate}
+                                                />
+                                            </div>
+                                        </>
+                                    )}
+                                </Tab>
+                            </Tabs>
+                        </div>
+                    </Col>
+                </Row>
+
+                {/* Modal de confirmación de eliminación */}
+                <DeleteProductModal
+                    show={showDeleteModal}
+                    product={deletingProduct}
+                    onClose={closeDeleteModal}
+                    onDelete={handleDeleteProduct}
+                />
+            </Container>
+        </div>
     );
 };
 

@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../states/store';
 import { CatalogFilters } from '../interfaces/CatalogFilters';
 import SearchBar from '../components/SearchBar';
+import Breadcrumbs from '../components/Breadcrumb';
 
 const CatalogPage: React.FC = () => {
   const [products, setProducts] = useState<productsCatalog[]>([]);
@@ -328,6 +329,7 @@ const CatalogPage: React.FC = () => {
       <div className="catalog-banner">
           <SearchBar />
       </div>
+      <Breadcrumbs />
       
         <SortFilters onSortChange={handleSortChange} />
         
