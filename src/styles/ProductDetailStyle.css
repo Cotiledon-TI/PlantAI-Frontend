@@ -103,3 +103,47 @@ input[type="checkbox"]:checked {
   max-width: 533px;
   width: 100%;
 }
+.images-thumbnails-container {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+@media (max-width: 1200px) {
+  .btn {
+    font-size: 0.7rem;
+  }
+  .contenedorsupremo {
+    align-content: center;
+    margin-top: 8%
+  }
+}
+
+@media (max-width: 767.5px) {
+  .contenedorsupremo {
+    align-content: center;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+  .col-12 {
+    width: 20%;
+    margin-bottom: 5%;
+  }
+  .card-img-top {
+    margin-bottom: 5%;
+  }
+  .btn {
+    font-size: 0.7rem;
+  }
+  p#product-icons.product-details.mt-3.card-text{
+    width: none;
+  }
+  div.d-flex.flex-column.align-items-center.gap-2.col-md-1{
+    width: initial;
+  }
+  div.g-0.mt-2.row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: nowrap;
+  }
+
+  }

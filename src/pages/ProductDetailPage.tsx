@@ -151,7 +151,15 @@ export default function ProductDetailPage() {
         {product && (
           <Row>
             <Col md={7}>
-              <Row>
+              <Row className='images-thumbnails-container'>
+              <Col md={10}>
+                  <Card.Img
+                    variant="top"
+                    src={selectedImage}
+                    alt={product.nombre}
+                    className="img-fluid main-image"
+                  />
+                </Col>
                 <Col md={2}>
                   <div className="image-thumbnails d-flex flex-wrap gap-3">
                     {product.imagenes && product.imagenes.length > 0 ? (
@@ -181,14 +189,6 @@ export default function ProductDetailPage() {
                       </Col>
                     )}
                   </div>
-                </Col>
-                <Col md={10}>
-                  <Card.Img
-                    variant="top"
-                    src={selectedImage}
-                    alt={product.nombre}
-                    className="img-fluid main-image"
-                  />
                 </Col>
               </Row>
             </Col>
