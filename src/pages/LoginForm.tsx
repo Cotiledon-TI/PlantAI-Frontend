@@ -245,8 +245,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
                   </Button>
 
                   <Button className="btn-outline-primary">
-                    <Link to="/crear-usuario" 
-                    style={{ color: '#1A4756'}}>
+                    <Link to="/crear-usuario">
                       Registrarme
                     </Link>
                   </Button>

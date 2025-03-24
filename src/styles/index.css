@@ -233,7 +233,7 @@ button {
 button.btn-primary {
   background-color: var(--primary-color);
   border-color: var(--primary-color);
-  color: white;
+  color: white!important;
   font-family: Quicksand;
 }
 
@@ -289,24 +289,25 @@ button.btn-secondary.disabled {
 }
 
 /* Tertiary Button (Outline) */
-button.btn-outline-primary {
+button.btn-outline-primary a {
   background-color: transparent;
   border-color: var(--tertiary-color);
   color: var(--tertiary-color);
 }
 
-button.btn-outline-primary:hover {
+button.btn-outline-primary a:hover {
   border-color: var(--tertiary-color);
-  color: #FFF!important;
+  color: #fff!important;
 }
 
 button.btn-outline-primary:active {
   background-color: var(--tertiary-active-bg);
-  color: #FFF!important;
+  color: #1A4756!important;
 }
 
 button.btn-outline-primary:focus {
   border-color: var(--primary-focus);
+  color: #1A4756!important;
 }
 
 button.btn-outline-primary:disabled, 
@@ -487,7 +488,7 @@ ul.custom-tabs.mb-3.nav.nav-tabs {
   bottom: 3.98rem;
   position: relative;
   z-index: 1;
-  left: -1rem;
+  left: -1.9rem;
 }
 
 /* Estilo para filas impares y pares */

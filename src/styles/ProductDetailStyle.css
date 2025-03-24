@@ -99,8 +99,6 @@ input[type="checkbox"]:checked {
 .main-image {
   border-radius: 1.2rem;
   height: auto;
-  max-height: 608px;
-  max-width: 533px;
   width: 100%;
 }
 .images-thumbnails-container {
@@ -124,10 +122,7 @@ input[type="checkbox"]:checked {
     margin-left: 2%;
     margin-right: 2%;
   }
-  .col-12 {
-    width: 20%;
-    margin-bottom: 5%;
-  }
+
   .card-img-top {
     margin-bottom: 5%;
   }

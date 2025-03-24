@@ -369,14 +369,14 @@ const EditProductPage: React.FC = () => {
                 {product.imagenes && product.imagenes.length > 0 ? (
                   product.imagenes.map((img, index) => (
                     <div key={`${img.id_producto}-${index}`} className="mt-3">
-                      <div className="image-container" style={{ position: 'relative' }}>
+                      <div className="image-container d-flex justify-content-center" style={{ position: 'relative' }}>
                         <img
                           src={`${backendUrl}${img.ruta}`}
                           alt={`Imagen ${index + 1}`}
                           style={{ width: '100%', maxWidth: '200px', height: 'auto' }}
                         />
                         <div
-                          className="image-number"
+                          className="image-number pt-0 ps-2"
                           style={{
                             position: 'absolute',
                             top: '10px',
@@ -387,6 +387,8 @@ const EditProductPage: React.FC = () => {
                             borderRadius: '50%',
                             fontWeight: 'bold',
                             fontSize: '16px',
+                            width: '24px',
+                            height: '24px',
                           }}
                         >
                           {index + 1}
@@ -395,7 +397,7 @@ const EditProductPage: React.FC = () => {
                       <Button
                         variant="danger"
                         onClick={() => handleImageDelete(index)}
-                        className="mt-2"
+                        className="mt-2 float-end"
                       >
                         Eliminar
                       </Button>

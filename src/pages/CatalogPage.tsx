@@ -337,7 +337,7 @@ const CatalogPage: React.FC = () => {
             <SidebarFilters onFilterChange={handleFilterChange} />
           </Col>
           <Col xs={12} sm={9} className="catalog-products">
-            <Row xs={1} sm={2} md={3} lg={4} className="g-3">
+            <Row xs={2} sm={2} md={3} lg={4} className="g-3">
               {Array.isArray(products) && products.length > 0 ? (
                 products.map((product) => (
                   <Col key={product.id}>
@@ -352,7 +352,7 @@ const CatalogPage: React.FC = () => {
                             : '/estaticos/default-image.jpg'
                         }
                         alt={product.nombre}
-                        className="card-products-container"
+                        className="card-products-container mt-5"
                       />
 
                       </Link>
@@ -456,7 +456,7 @@ const CatalogPage: React.FC = () => {
           <Offcanvas.Header closeButton>
             <Offcanvas.Title>Mi Carrito de compras</Offcanvas.Title>
           </Offcanvas.Header>
-          <Offcanvas.Body>ƒ
+          <Offcanvas.Body>
             {selectedProduct && (
               <div className="cart-item-card">
                 <img
